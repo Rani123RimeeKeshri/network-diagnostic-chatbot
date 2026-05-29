@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Diagnostic Chatbot</title>
-
+    <title>🤖 Network Diagnostic Chatbot - Advanced Network Monitoring</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <body>
-
     <div class="chat-container">
-
+        <!-- Header with Controls -->
         <div class="header-controls">
-            <h1>🤖 Network Diagnostic Chatbot</h1>
+            <h1>🤖 Network Diagnostic</h1>
             <div class="controls">
-                <button class="readme-btn" onclick="toggleReadme()" title="Toggle README">📖</button>
+                <button class="export-btn" onclick="exportReport()" title="Export Report">📊</button>
+                <button class="readme-btn" onclick="toggleReadme()" title="Help & Guide">📖</button>
                 <button class="theme-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
             </div>
         </div>
 
-        <!-- README Modal -->
+        <!-- README/Help Modal -->
         <div id="readme-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>📋 How to Use</h2>
+                    <h2>📋 Help & Guide</h2>
                     <button class="close-btn" onclick="toggleReadme()">✕</button>
                 </div>
                 <div class="modal-body">
@@ -45,11 +44,17 @@
                         <li>Type your network issue or question</li>
                         <li>Use 🎤 button for voice input</li>
                         <li>Press Enter or click ➤ to send</li>
-                        <li>Powered by AI (Gemini/OpenRouter)</li>
+                        <li>Powered by AI (Gemini API)</li>
                     </ul>
 
+                    <h4>📈 Network Chart:</h4>
+                    <p>Real-time visualization of your download and upload speeds.</p>
+
                     <h4>🌙 Theme Toggle:</h4>
-                    <p>Click the moon/sun button in the top-right to switch between dark and light modes.</p>
+                    <p>Click the moon/sun button to switch between dark and light modes.</p>
+
+                    <h4>📊 Export Report:</h4>
+                    <p>Click the chart icon to generate and download a PDF report of your network status.</p>
 
                     <h4>⚙️ Setup Instructions:</h4>
                     <ol>
@@ -59,22 +64,32 @@
                         <li>Open browser to <code>http://localhost:5000</code></li>
                     </ol>
 
-                    <h4>🔧 Common Issues:</h4>
+                    <h4>🔧 Common Issues & Solutions:</h4>
                     <ul>
-                        <li><strong>WiFi not connecting?</strong> - Check password and restart router</li>
-                        <li><strong>Slow internet?</strong> - Disconnect unused devices and check signal strength</li>
-                        <li><strong>High ping?</strong> - Network congestion or distant servers</li>
-                        <li><strong>DNS issues?</strong> - Try changing DNS to 8.8.8.8</li>
+                        <li><strong>WiFi not connecting?</strong> - Check password, restart router, disable airplane mode</li>
+                        <li><strong>Slow internet?</strong> - Disconnect unused devices, check signal strength, restart router</li>
+                        <li><strong>High ping?</strong> - Network congestion or distant servers, try different server</li>
+                        <li><strong>DNS issues?</strong> - Change DNS to 8.8.8.8 or 1.1.1.1</li>
+                        <li><strong>No internet?</strong> - Check cables, restart modem, verify ISP connection</li>
+                    </ul>
+
+                    <h4>💡 Pro Tips:</h4>
+                    <ul>
+                        <li>Monitor your network regularly to identify patterns</li>
+                        <li>Position router in central location for better coverage</li>
+                        <li>Use 5GHz WiFi for faster speeds (shorter range)</li>
+                        <li>Close background apps consuming bandwidth</li>
+                        <li>Keep router firmware updated</li>
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!-- Network Dashboard -->
         <div class="network-dashboard">
-
             <div class="card">
                 <h3>Status</h3>
-                <p id="status">Checking...</p>
+                <p id="status" class="status-indicator">🔄 Checking...</p>
             </div>
 
             <div class="card">
@@ -96,23 +111,24 @@
                 <h3>IP Address</h3>
                 <p id="ip">Loading...</p>
             </div>
-
         </div>
 
+        <!-- Network Chart -->
+        <div class="chart-container">
+            <canvas id="networkChart"></canvas>
+        </div>
+
+        <!-- Chat Box -->
         <div id="chat-box"></div>
-        <canvas id="networkChart"></canvas>
+
+        <!-- Input Area -->
         <div class="input-area">
-
-            <input type="text" id="user-input" placeholder="Enter network issue...">
-
-            <button class="mic-btn" onclick="startVoice()">🎤</button>
-
-            <button onclick="sendMessage()">➤</button>
-
+            <input type="text" id="user-input" placeholder="Ask about network issues...">
+            <button class="mic-btn" onclick="startVoice()" title="Voice Input">🎤</button>
+            <button class="send-btn" onclick="sendMessage()" title="Send Message">➤</button>
         </div>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-
 </body>
 </html>
