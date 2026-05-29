@@ -1,0 +1,8 @@
+Flask==2.3.2
+speedtest-cli==1.0.7
+psutil==5.9.5
+ping3==2.9.1
+reportlab==4.0.4
+python-dotenv==1.0.0
+requests==2.31.0
+Werkzeug==2.3.6
