@@ -175,6 +175,8 @@ Always be professional, friendly, and provide step-by-step solutions when applic
         else:
             raise Exception("No response from Gemini")
     else:
+        print("Status Code:", response.status_code)
+        print("Response Body:", response.text)
         raise Exception(f"Gemini API error: {response.status_code}")
 
 def get_openrouter_response(user_message):
