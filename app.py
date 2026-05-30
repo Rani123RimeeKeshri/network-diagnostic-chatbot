@@ -18,6 +18,8 @@ import platform
 
 load_dotenv()
 
+print("APP.PY LOADED")
+
 app = Flask(__name__)
 
 # Store network history
