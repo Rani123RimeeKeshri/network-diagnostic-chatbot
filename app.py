@@ -125,7 +125,7 @@ def chatbot():
 
 def get_gemini_response(user_message):
     """Get response from Google Gemini API"""
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
     
     system_prompt = """You are an expert Network Diagnostic AI Assistant. You help users troubleshoot network and internet issues.
     
