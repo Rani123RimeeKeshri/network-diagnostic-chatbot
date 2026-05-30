@@ -167,6 +167,9 @@ Always be professional, friendly, and provide step-by-step solutions when applic
         headers=headers,
         timeout=10
     )
+
+    print("Status:", response.status_code)
+    print("Body:", response.text)
     
     if response.status_code == 200:
         result = response.json()
