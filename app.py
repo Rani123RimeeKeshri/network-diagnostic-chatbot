@@ -63,6 +63,11 @@ responses = {
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
+# Debug check
+print("Gemini Loaded =", bool(GEMINI_API_KEY))
+print("Gemini Value =", GEMINI_API_KEY[:10] + "..." if GEMINI_API_KEY else "NOT FOUND")
+print("OpenRouter Loaded =", bool(OPENROUTER_API_KEY))
+
 @app.route("/")
 def home():
     return render_template("index.html")
